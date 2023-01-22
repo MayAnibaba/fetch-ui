@@ -36,11 +36,18 @@ class Home extends BaseController
         //print_r($response);
 
         $responseObject = json_decode($response);
-        //print_r($responseObject);
+        print_r($responseObject);
 
 
 		if($responseObject->code =="00"){
-            $session->set($responseObject->data);
+
+            $ses_data = [
+                'id' => $responseObject->data->id,
+                'email' => $responseObject->data->email,
+                'isLoggedIn' => TRUE
+            ];
+            $session->set($ses_data);
+   
             return redirect()->to('/dashboard');
         } else {
             $session->setFlashdata('msg', $responseObject->message);
