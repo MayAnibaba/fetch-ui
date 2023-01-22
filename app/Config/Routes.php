@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->match(['get','post'],'/index', 'Home::index');
 $routes->post('/loginAuth', 'Home::login');
+$routes->get('/logout', 'Home::logout');
 $routes->get('/dashboard', 'Home::dashboard',['filter' => 'authGuard']);
 
 /*
