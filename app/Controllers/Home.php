@@ -11,35 +11,41 @@ class Home extends BaseController
 
     public function login(){
         $session = session();
+        helper(['curl']);
         //$userModel = new UserModel();
-        $email = $this->request->getVar('email');
-        $password = $this->request->getVar('password');
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $curl = curl_init();
 
-        return redirect()->to('/dashboard');
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'http://localhost:3000/users/login',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 60,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+                "email":"'.$email.'",
+                "password":"'.$password.'"}',
+            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+            )
+        );
         
-        //$data = $userModel->where('email', $email)->first();
-        
-        // if($data){
-        //     $pass = $data['password'];
-        //     $authenticatePassword = password_verify($password, $pass);
-        //     if($authenticatePassword){
-        //         $ses_data = [
-        //             'id' => $data['id'],
-        //             'name' => $data['name'],
-        //             'email' => $data['email'],
-        //             'isLoggedIn' => TRUE
-        //         ];
-        //         $session->set($ses_data);
-        //         return redirect()->to('/profile');
-            
-        //     }else{
-        //         $session->setFlashdata('msg', 'Password is incorrect.');
-        //         return redirect()->to('/signin');
-        //     }
-        // }else{
-        //     $session->setFlashdata('msg', 'Email does not exist.');
-        //     return redirect()->to('/signin');
-        // }
+        $response = curl_exec($curl);
+        curl_close($curl);
+		
+        //print_r($response);
+
+        $responseObject = json_decode($response);
+        //print_r($responseObject);
+
+
+		if($responseObject->code =="00"){
+            $session->set($responseObject->data);
+            return redirect()->to('/dashboard');
+        } else {
+            $session->setFlashdata('msg', $responseObject->message);
+            return redirect()->to('/');
+        }
     }
 
     public function dashboard(){
