@@ -56,7 +56,8 @@ class Home extends BaseController
     }
 
     public function logout(){
-        session()->session_destroy();
+        session();
+        session_destroy();
         return redirect()->to('/');
     }
 
