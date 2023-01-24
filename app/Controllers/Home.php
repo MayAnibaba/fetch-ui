@@ -62,6 +62,9 @@ class Home extends BaseController
     }
 
     public function dashboard(){
-        return view('dashboard');
+        $session = session();
+
+        $data['user_email'] = session()->get('email');
+        return view('dashboard', $data);
     }
 }
