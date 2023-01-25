@@ -55,4 +55,12 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+
+    public function template(string $page, array $data)
+    {
+        echo view('header', $data);
+        echo view($page, $data);
+        echo view('footer', $data);
+    } 
 }
