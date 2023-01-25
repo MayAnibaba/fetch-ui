@@ -1,0 +1,19 @@
+CRITICAL - 2023-01-25 21:53:26 --> Attempt to read property "data" on null
+in APPPATH/Controllers/User.php on line 29.
+ 1 APPPATH/Controllers/User.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "data" on null', 'APPPATH/Controllers/User.php', 29)
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\User->index()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 21:55:10 --> Undefined constant "App\Controllers\responseObject"
+in APPPATH/Controllers/User.php on line 29.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\User->index()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-25 21:55:13 --> Undefined constant "App\Controllers\responseObject"
+in APPPATH/Controllers/User.php on line 29.
+ 1 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\User->index()
+ 2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
