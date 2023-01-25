@@ -65,6 +65,7 @@ class Home extends BaseController
         $session = session();
 
         $data['user_email'] = session()->get('email');
-        return view('dashboard', $data);
+        $this->template('dashboard', $data); 
+        //return view('dashboard', $data);
     }
 }

@@ -59,8 +59,8 @@ abstract class BaseController extends Controller
 
     public function template(string $page, array $data)
     {
-        echo view('header', $data);
+        echo view('templates/header', $data);
         echo view($page, $data);
-        echo view('footer', $data);
+        echo view('templates/footer', $data);
     } 
 }
