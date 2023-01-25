@@ -5,8 +5,9 @@ namespace App\Controllers;
 class User extends BaseController
 {
     public function index(){
-        //helper(['form']);
-        return view('login');
+
+        $data['user_email'] = session()->get('email');
+        $this->template('user/list', $data); 
     }
 
 }
