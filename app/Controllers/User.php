@@ -22,7 +22,7 @@ class User extends BaseController
         //print_r($response);
 
         $responseObject = json_decode($response);
-        print_r($responseObject);
+        //print_r($responseObject);
 
 
 		if($responseObject->code =="00"){
