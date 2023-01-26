@@ -167,3 +167,24 @@ in APPPATH/Controllers/Token.php on line 44.
  2 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Token))
  3 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-26 22:03:25 --> view(): Argument #2 ($data) must be of type array, stdClass given, called in /Applications/MAMP/htdocs/fetch-ui/app/Controllers/Token.php on line 48
+in SYSTEMPATH/Common.php on line 1163.
+ 1 APPPATH/Controllers/Token.php(48): view('token/create', Object(stdClass))
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Token->create()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Token))
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-26 22:04:38 --> view(): Argument #2 ($data) must be of type array, string given, called in /Applications/MAMP/htdocs/fetch-ui/app/Controllers/Token.php on line 49
+in SYSTEMPATH/Common.php on line 1163.
+ 1 APPPATH/Controllers/Token.php(49): view('token/create', 'https://checkout.paystack.com/mk8cavvzxyib3a8')
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Token->create()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Token))
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-26 22:04:44 --> view(): Argument #2 ($data) must be of type array, string given, called in /Applications/MAMP/htdocs/fetch-ui/app/Controllers/Token.php on line 49
+in SYSTEMPATH/Common.php on line 1163.
+ 1 APPPATH/Controllers/Token.php(49): view('token/create', 'https://checkout.paystack.com/gt2i7f90d3yds1w')
+ 2 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Token->create()
+ 3 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Token))
+ 4 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

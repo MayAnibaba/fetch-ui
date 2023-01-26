@@ -43,9 +43,10 @@ class Token extends BaseController
                     'amount' => 5000 // amount is treated in kobo using this method
                 ];
                 $response = $Transaction->initialize($data);
+                $data['paystack_url'] = $response->authorizationUrl;
         
-                print_r($response);
-                return view('token/create', );
+                //print_r($response);
+                return view('token/create', $data);
 
             } else {
                 echo "Error wrong ref";
