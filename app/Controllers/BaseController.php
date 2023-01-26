@@ -9,6 +9,10 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
+use \Matscode\Paystack\Transaction;
+use \Matscode\Paystack\Utility\Debug; // for Debugging purpose
+use \Matscode\Paystack\Utility\Http;
+
 /**
  * Class BaseController
  *

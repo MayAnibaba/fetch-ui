@@ -37,6 +37,10 @@ $routes->get('/dashboard', 'Home::dashboard',['filter' => 'authGuard']);
 $routes->get('/users', 'User::index',['filter' => 'authGuard']);
 $routes->get('/loans', 'Loan::index',['filter' => 'authGuard']);
 $routes->get('/transactions', 'Transaction::index',['filter' => 'authGuard']);
+$routes->get('/createTrans', 'Transaction::create',['filter' => 'authGuard']);
+$routes->get('/getToken', 'Token::create');
+$routes->post('/callback', 'Token::call_back');
+
 
 /*
  * --------------------------------------------------------------------
