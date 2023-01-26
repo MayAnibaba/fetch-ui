@@ -35,6 +35,7 @@ $routes->post('/loginAuth', 'Home::login');
 $routes->get('/logout', 'Home::logout');
 $routes->get('/dashboard', 'Home::dashboard',['filter' => 'authGuard']);
 $routes->get('/users', 'User::index',['filter' => 'authGuard']);
+$routes->get('/loans', 'Loan::index',['filter' => 'authGuard']);
 
 /*
  * --------------------------------------------------------------------
