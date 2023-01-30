@@ -10861,7 +10861,7 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("http://localhost:8888/fetch-ui/public/img/login.jpeg");
+  background: url("http://172.105.152.82/public/img/login.jpeg");
   background-position: center;
   background-size: cover;
 }
