@@ -9,7 +9,7 @@ class Loan extends BaseController
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://localhost:3000/loans',
+            CURLOPT_URL => 'https://fetch-api-production.up.railway.app/loans',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT => 60,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
