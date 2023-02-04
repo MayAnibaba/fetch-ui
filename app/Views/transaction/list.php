@@ -23,7 +23,8 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <?php if (count($transactions) > 10) {?>
+                        <tfoot>
                     <tr>
                             <th>Trans Ref</th>
                             <th>Schedule Ref</th>
@@ -34,6 +35,8 @@
                             <th>Actions</th>
                         </tr>
                     </tfoot>
+                    <?php } ?>
+                    
                     <tbody>
 
                     <?php

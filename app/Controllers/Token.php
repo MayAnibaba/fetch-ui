@@ -37,12 +37,19 @@ class Token extends BaseController
                 //paystack transaction initialize
                 $secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
                 $Transaction = new \Matscode\Paystack\Transaction( $secretKey );
-                $data = 
-                [
-                    'email'  => $responseObject->data->email,
-                    'amount' => 5000 // amount is treated in kobo using this method
-                ];
-                $response = $Transaction->initialize($data);
+                // $data = 
+                // [
+                //     'email'  => $responseObject->data->email,
+                //     'amount' => 5000 // amount is treated in kobo using this method
+                // ];
+
+                $response = $Transaction
+                            ->setCallbackUrl(base_url().'callback') // to override/set callback_url, it can also be set on your dashboard 
+                            ->setEmail( $responseObject->data->email, )
+                            ->setAmount( 5000 ) // amount is treated in Naira while using this method
+                            ->initialize();
+
+                //$response = $Transaction->initialize($data);
                 $data['paystack_url'] = $response->authorizationUrl;
         
                 //print_r($response);
@@ -60,8 +67,7 @@ class Token extends BaseController
     }
 
     public function call_back(){
-
-        
+        return view('token/callback');
     }
 
 }

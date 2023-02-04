@@ -9,14 +9,14 @@
             <h6 class="m-0 font-weight-bold text-primary">Users</h6>
         </div>
         <div class="card-body">
-        <div class="col-sm-12 col-md-6" style="padding:">
+        <!-- <div class="col-sm-12 col-md-6" style="padding:">
                 <a href="#" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-flag"></i>
                     </span>
                     <span class="text">Add user</span>
                 </a>
-        </div>
+        </div> -->
 
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -27,9 +27,10 @@
                             <th>Last login</th>
                             <th>Created </th>
                             <th>Last updated</th>
-                            <th>Actions</th>
+                            <!-- <th>Actions</th> -->
                         </tr>
                     </thead>
+                    <?php if (count($users) > 10) {?>
                     <tfoot>
                     <tr>
                             <th>Email</th>
@@ -37,9 +38,10 @@
                             <th>Last login</th>
                             <th>Created </th>
                             <th>Last updated</th>
-                            <th>Actions</th>
+                            <!-- <th>Actions</th> -->
                         </tr>
                     </tfoot>
+                    <?php } ?>
                     <tbody>
 
                     <?php
@@ -50,13 +52,13 @@
                             <td><?= $users[$i]->lastLogin?></td>
                             <td><?= $users[$i]->createdAt?></td>
                             <td><?= $users[$i]->updatedAt?></td>
-                            <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
+                            <!-- <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
                                     <a href="#" title="delete" class="btn btn-danger btn-circle btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </a>
-                                </td>
+                                </td> -->
                         </tr>
                     <?php  } ?>
                        
