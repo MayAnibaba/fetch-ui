@@ -23,6 +23,7 @@
                     <thead>
                         <tr>
                             <th>Loan Ac. Number</th>
+                            <th>Loan Ref</th>
                             <th>Phone Number</th>
                             <th>Email</th>
                             <th>Loan Amount</th>
@@ -34,6 +35,7 @@
                     <tfoot>
                         <tr>
                             <th>Loan Ac. Number</th>
+                            <th>Loan Ref</th>
                             <th>Phone Number</th>
                             <th>Email</th>
                             <th>Loan Amount</th>
@@ -48,6 +50,7 @@
                     for ($i = 0; count($loans) > $i; $i++) {?>
                         <tr>
                             <td><?= $loans[$i]->loanAccountNumber?></td>
+                            <td><?= $loans[$i]->loanRef?></td>
                             <td><?= $loans[$i]->phoneNumber?></td>
                             <td><?= $loans[$i]->email?></td>
                             <td><?= $loans[$i]->loanAmount?></td>
