@@ -46,7 +46,7 @@ class Token extends BaseController
                 $response = $Transaction
                             ->setCallbackUrl(base_url().'/callback') // to override/set callback_url, it can also be set on your dashboard 
                             ->setEmail( $responseObject->data->email, )
-                            ->setAmount( 5000 ) // amount is treated in Naira while using this method
+                            ->setAmount( 50 ) // amount is treated in Naira while using this method
                             ->initialize();
 
                 //$response = $Transaction->initialize($data);
@@ -67,7 +67,53 @@ class Token extends BaseController
     }
 
     public function call_back(){
-        return view('token/callback');
+
+        $secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
+
+        if($_GET['reference']){
+
+            $curl = curl_init();
+            $paystack_reference = htmlspecialchars($_GET['reference']);
+  
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/verify/$paystack_reference",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer $secretKey",
+                "Cache-Control: no-cache",
+            ),
+            ));
+            
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+        
+            curl_close($curl);
+            
+            if ($err) {
+                $data['success'] = false;
+                $data['message'] = "cURL Error #:" . $err;
+            } else {
+
+                $responseObject = json_decode($response);
+                print_r($responseObject);
+
+                $data['success'] = true;
+                $data['response'] = $responseObject;
+            }
+
+            return view('token/callback', $data);
+        } else {
+
+            return view('token/callback', $data);
+        }
+
+
+        
     }
 
 }
