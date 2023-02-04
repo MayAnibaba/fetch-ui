@@ -44,7 +44,7 @@ class Token extends BaseController
                 // ];
 
                 $response = $Transaction
-                            ->setCallbackUrl(base_url().'callback') // to override/set callback_url, it can also be set on your dashboard 
+                            ->setCallbackUrl(base_url().'/callback') // to override/set callback_url, it can also be set on your dashboard 
                             ->setEmail( $responseObject->data->email, )
                             ->setAmount( 5000 ) // amount is treated in Naira while using this method
                             ->initialize();
