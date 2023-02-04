@@ -22,10 +22,10 @@ class App extends BaseConfig
      * explicitly and never rely on auto-guessing, especially in production
      * environments.
      */
-    public string $baseURL = 'http://localhost:8888/fetch-ui/public/index.php';
+    //public string $baseURL = 'http://localhost:8888/fetch-ui/public/index.php';
     //public string $baseARL = 'http://localhost:8888/fetch-ui/public';
 
-    //public string $baseURL = 'http://172.105.152.82/public/index.php';
+    public string $baseURL = 'http://172.105.152.82/public/index.php';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
