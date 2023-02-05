@@ -34,19 +34,26 @@
                             <tbody>
 
                             <?php
-                            for ($i = 0; count($users) > $i; $i++) {?>
+                            for ($i = 0; count($users) > $i; $i++) {
+                                
+                                $dateLogin = strtotime($users[$i]->lastLogin);
+                                $dateUpdated = strtotime($users[$i]->updatedAt);
+                                $dateCreated = strtotime($users[$i]->createdAt);
+                               
+                                
+                                ?>
                                 <tr>
                                     <td><?= $users[$i]->email?></td>
-                                    <td><?php if($users[$i]->isActive == '1') { echo 'Active';} else {echo 'Inactive';}?></td>
-                                    <td><?= $users[$i]->lastLogin?></td>
-                                    <td><?= $users[$i]->createdAt?></td>
-                                    <td><?= $users[$i]->updatedAt?></td>
-                                    <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
+                                    <td><?php if($users[$i]->isActive == '1') { echo '&#128994;';} else {echo '&#x1F534;';}?></td>
+                                    <td><?php if($users[$i]->lastLogin != ''){ echo date('d M Y h:i:s', $dateLogin);}?></td>
+                                    <td><?php if($users[$i]->createdAt != ''){ echo date('d M Y h:i:s', $dateCreated);}?></td>
+                                    <td><?php if($users[$i]->updatedAt != ''){ echo date('d M Y h:i:s', $dateUpdated);}?></td>
+                                    <td><!-- <a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                                 <i class="fas fa-info-circle"></i>
                                             </a>
                                             <a href="#" title="delete" class="btn btn-danger btn-circle btn-sm">
                                                 <i class="fas fa-trash"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                 </tr>
                             <?php  } ?>
