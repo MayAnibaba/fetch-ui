@@ -6,6 +6,13 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <form id="dashboard_filter_form" action="<?= base_url()?>/dashboard" method="GET">
+                            <select name="dashboard_filter" id="dashboard_filter" onchange="reloadPage()">
+                                <option value="today" <?php if(isset($_GET['dashboard_filter'])){if($_GET['dashboard_filter']=='today'){echo 'selected';}}?>>Today</option>
+                                <option value="7days" <?php if(isset($_GET['dashboard_filter'])){if($_GET['dashboard_filter']=='7days'){echo 'selected';}}?>>Last 7 days</option>
+                                <option value="30days" <?php if(isset($_GET['dashboard_filter'])){if($_GET['dashboard_filter']=='30days'){echo 'selected';}}?>>Last 30 days</option>
+                            </select>
+                        </form>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
@@ -20,7 +27,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Due Repayments (Monthly)</div>
+                                                Due Repayments</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">&#x20A6;400,000</div>
                                         </div>
                                         <div class="col-auto">
@@ -38,7 +45,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Collected Repayments (Monthly)</div>
+                                                Collected Repayments</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">&#x20A6;215,000</div>
                                         </div>
                                         <div class="col-auto">
@@ -181,4 +188,8 @@
             </div>
             <!-- End of Main Content -->
 
-            
+            <script>
+                function reloadPage(){
+                    document.getElementById("dashboard_filter_form").submit();
+                }
+            </script> 

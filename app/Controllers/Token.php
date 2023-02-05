@@ -37,22 +37,13 @@ class Token extends BaseController
                 //paystack transaction initialize
                 $secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
                 $Transaction = new \Matscode\Paystack\Transaction( $secretKey );
-                // $data = 
-                // [
-                //     'email'  => $responseObject->data->email,
-                //     'amount' => 5000 // amount is treated in kobo using this method
-                // ];
-
                 $response = $Transaction
                             ->setCallbackUrl(base_url().'/callback') // to override/set callback_url, it can also be set on your dashboard 
                             ->setEmail( $responseObject->data->email, )
                             ->setAmount( 50 ) // amount is treated in Naira while using this method
                             ->initialize();
 
-                //$response = $Transaction->initialize($data);
                 $data['paystack_url'] = $response->authorizationUrl;
-        
-                //print_r($response);
                 return view('token/create', $data);
 
             } else {
@@ -69,7 +60,6 @@ class Token extends BaseController
     public function call_back(){
 
         $secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
-
         if($_GET['reference']){
 
             $curl = curl_init();
@@ -89,21 +79,42 @@ class Token extends BaseController
             ),
             ));
             
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
+            $paystackresponse = curl_exec($curl);
+            $paystackerr = curl_error($curl);
+            print_r($paystackresponse);
         
             curl_close($curl);
             
             if ($err) {
                 $data['success'] = false;
-                $data['message'] = "cURL Error #:" . $err;
+                $data['message'] = "cURL Error #:" . $paystackerr;
+
             } else {
 
-                $responseObject = json_decode($response);
-                print_r($responseObject);
+
+                $paystackResponseObject = json_decode($paystackresponse);
+                print_r($paystackResponseObject);
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://fetch-api-production.up.railway.app/tokens/create',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_TIMEOUT => 60,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS =>'{
+                        "loanRef":"'.$loanRef.'","data":"'.$paystackresponse.'"}',
+                    CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
+                ));
+                
+                $backendresponse = curl_exec($curl);
+                curl_close($curl);
+
+                $backendResponseObject = json_decode($backendresponse);
+                print_r($backendResponseObject);
+
 
                 $data['success'] = true;
-                $data['response'] = $responseObject;
+                $data['response'] = $paystackResponseObject;
             }
 
             return view('token/callback', $data);
