@@ -17,25 +17,25 @@
                     <thead>
                         <tr>
                             <th>Loan Ac. Number</th>
-                            <th>Loan Ref</th>
+                            <!-- <th>Loan Ref</th> -->
                             <th>Phone Number</th>
                             <th>Email</th>
                             <th>Loan Amount</th>
                             <th>Repay. Inst. Status</th>
                             <th>Created</th>
-                            <th>Actions</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Loan Ac. Number</th>
-                            <th>Loan Ref</th>
+                            <!-- <th>Loan Ref</th> -->
                             <th>Phone Number</th>
                             <th>Email</th>
                             <th>Loan Amount</th>
                             <th>Repay. Inst. Status</th>
                             <th>Created</th>
-                            <th>Actions</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -46,18 +46,16 @@
                         ?>
                         <tr>
                             <td><?= $loans[$i]->loanAccountNumber?></td>
-                            <td><?= $loans[$i]->loanRef?></td>
+                            <!-- <td><?= $loans[$i]->loanRef?></td> -->
                             <td><?= $loans[$i]->phoneNumber?></td>
                             <td><?= $loans[$i]->email?></td>
-                            <td><?= $loans[$i]->loanAmount?></td>
+                            <td><?= number_format($loans[$i]->loanAmount, 2)?></td>
                             <td><?= $loans[$i]->repaymentInstrumentStatus?></td>
                             <td><?= date('d M Y h:i:s', $loandate);?></td>
                             <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
-                                    <a href="#" title="delete" class="btn btn-danger btn-circle btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    
                                 </td>
                         </tr>
                     <?php  } ?>
