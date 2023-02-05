@@ -40,14 +40,18 @@
                     <tbody>
 
                     <?php
-                    for ($i = 0; count($transactions) > $i; $i++) {?>
+                    for ($i = 0; count($transactions) > $i; $i++) {
+                        
+                        $transdate = strtotime($transactions[$i]->createdAt);
+                        
+                        ?>
                         <tr>
                             <td><?= $transactions[$i]->transRef?></td>
                             <td><?= $transactions[$i]->scheduleRef?></td>
                             <td><?= $transactions[$i]->status?></td>
                             <td><?= $transactions[$i]->message?></td>
                             <td><?= $transactions[$i]->code?></td>
-                            <td><?= $transactions[$i]->createdAt?></td>
+                            <td><?= date('d M Y h:i:s', $transdate);?></td>
                             <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>

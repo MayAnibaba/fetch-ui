@@ -51,12 +51,21 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url(); ?>/loans">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Loans</span></a>
+            <!-- Heading -->
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Loan Management</span>
+                </a>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="<?php echo base_url(); ?>/loans">View Loans</a>
+                    <a class="collapse-item" href="<?php echo base_url(); ?>/loans/create">Add loan</a>
+                    </div>
+                </div>
             </li>
+
+            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url(); ?>/transactions">
                     <i class="fas fa-fw fa-table"></i>
