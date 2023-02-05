@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?php echo str_replace('/index.php','',base_url()); ?>/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?php echo str_replace('/index.php','',base_url()); ?>/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -51,17 +51,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url(); ?>/users">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Users</span></a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url(); ?>/loans">
                     <i class="fas fa-fw fa-table"></i>
@@ -72,6 +62,21 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Transactions</span></a>
             </li>
+
+            <!-- Heading -->
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Administration</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="<?php echo base_url(); ?>/users">Users</a>
+                    </div>
+                </div>
+            </li>
+
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -110,8 +115,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_email;?></span>
-                                <!-- <img class="img-profile rounded-circle"
-                                    src="<?php echo base_url(); ?>/img/undraw_profile.svg"> -->
+                                <img class="img-profile rounded-circle"
+                                    src="<?php echo str_replace('/index.php','',base_url()); ?>/img/undraw_profile.svg"> 
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
