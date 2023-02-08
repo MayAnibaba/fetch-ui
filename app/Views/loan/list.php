@@ -46,7 +46,7 @@
                         ?>
                         <tr>
                             <td><?= $loans[$i]->loanAccountNumber?></td>
-                            <!-- <td><?= $loans[$i]->loanRef?></td> -->
+                            <!-- <td><?# $loans[$i]->loanRef?></td> -->
                             <td><?= $loans[$i]->phoneNumber?></td>
                             <td><?= $loans[$i]->email?></td>
                             <td><?= number_format($loans[$i]->loanAmount, 2)?></td>
