@@ -26,18 +26,22 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Loan Ac. Number</th>
-                            <!-- <th>Loan Ref</th> -->
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                            <th>Loan Amount</th>
-                            <th>Repay. Inst. Status</th>
-                            <th>Created</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
+                    <?php if (count($loans) > 10) {?>
+                        <tfoot>
+                            <tr>
+                                <th>Loan Ac. Number</th>
+                                <!-- <th>Loan Ref</th> -->
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Loan Amount</th>
+                                <th>Repay. Inst. Status</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    <?php } ?>
+                    
+           
                     <tbody>
 
                     <?php
