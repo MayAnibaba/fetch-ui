@@ -60,7 +60,7 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style="">
                     <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="<?php echo base_url(); ?>/loans">View Loans</a>
-                    <a class="collapse-item" href="<?php echo base_url(); ?>/loans/create">Add loan</a>
+                    <a class="collapse-item" href="<?php echo base_url(); ?>/create_loan">Add loan</a>
                     </div>
                 </div>
             </li>

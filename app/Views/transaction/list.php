@@ -55,7 +55,7 @@
                             <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
-                                    <a href="#" title="delete" class="btn btn-danger btn-circle btn-sm">
+                                    <a href="" title="delete" class="btn btn-danger btn-circle btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
