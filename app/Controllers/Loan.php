@@ -69,6 +69,7 @@ class Loan extends BaseController
             $data['loan'] = '';
         }
 
+        $data['user_email'] = session()->get('email');
         $this->template('loan/view', $data); 
     }
 }
