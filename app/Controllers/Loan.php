@@ -64,7 +64,7 @@ class Loan extends BaseController
                 $curl2 = curl_init();
 
                 curl_setopt_array($curl2, array(
-                    CURLOPT_URL => 'https://fetch-api-production.up.railway.app/loans/byLoanRef',
+                    CURLOPT_URL => 'https://fetch-api-production.up.railway.app/loanSchedules/byLoanRef',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_TIMEOUT => 60,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -77,10 +77,9 @@ class Loan extends BaseController
                 
                 $response2 = curl_exec($curl2);
                 curl_close($curl2); 
-
                 $response2Object = json_decode($response2);
 
-                $data['loanSchedule'] = $response2Object->data;
+                $data['loanSchedules'] = $response2Object->data;
 
 
             } else {

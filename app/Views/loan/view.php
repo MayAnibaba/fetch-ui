@@ -55,7 +55,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <?php if (count($loanSchedule) > 10) {?>
+                    <?php if (count($loanSchedules) > 10) {?>
                         <tfoot>
                             <tr>
                                 <th>Due date</th>
@@ -71,13 +71,14 @@
                     <tbody>
 
                     <?php
-                     for ($i = 0; count($loanSchedule) > $i; $i++) {
+                     for ($i = 0; count($loanSchedules) > $i; $i++) {
+                        $transdate = strtotime($loanSchedules[$i]->dueDate);
                         ?>
                         <tr>
-                            <td><?= $loanSchedule[$i]->dueDate?></td>
-                            <td><?= $loanSchedule[$i]->dueAmount?></td>
-                            <td><?= $loanSchedule[$i]->collectionStatus?></td>
-                            <td><?= $loanSchedule[$i]->collectedAmount?></td>
+                            <td><?= date('d M Y h:i:s', $transdate);?></td>
+                            <td>&#x20A6; <?= number_format($loanSchedules[$i]->dueAmount,2)?></td>
+                            <td><?= $loanSchedules[$i]->collectionStatus?></td>
+                            <td><?= $loanSchedules[$i]->collectedAmount?></td>
                             <td></td>
                         </tr>
                     <?php  } ?>
