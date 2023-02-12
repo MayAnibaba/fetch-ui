@@ -27,9 +27,9 @@
                 <b>Token Expiry:</b> <?=$loan->tokenExpiry ?> <br>
                 <b>Get Loan schedule:</b> <?=$loan->getLoanSchedule ?> <br>
                 <b>Created at:</b> <?=date('d M Y h:i:s', strtotime($loan->createdAt)); ?> <br>
-                <?php  if($loan->repaymentInstrumentStatus == 'Pending') {?>
-                    <b>Repayment base:</b> <?php echo "http://172.105.152.82/public/index.php/getToken?id="+$loan->loanRef  ?> <br>
-                <?php # } ?>
+                <?php  if($loan->repaymentInstrumentStatus == 'pending') {?>
+                    <b>Repayment base:</b> <?php echo "http://172.105.152.82/public/index.php/getToken?id=" . $loan->loanRef  ?> <br>
+                <?php  } ?>
                 <b>Cba Data:</b> <code><?=$loan->cbaData ?></code> <br>
             </div>
         </div>
