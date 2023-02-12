@@ -1,29 +1,10 @@
 
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Loan</h6>
-            
-        </div>
-        
-        <div class="card-body">
-
-            <div class="table-responsive">
-                <?php print_r($loan); ?>
-            </div>
-        </div>
-    </div>
-
-</div>
-
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-1 text-gray-800">Other Utilities</h1>
+<h1 class="h3 mb-1 text-gray-800">Loan Details</h1>
+
 <!-- Content Row -->
 <div class="row">
 
@@ -32,33 +13,47 @@
         <!-- Overflow Hidden -->
         <div class="card mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Overflow Hidden Utilty</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Info</h6>
             </div>
             <div class="card-body">
-                Use <code>.o-hidden</code> to set the overflow property of any element to hidden.
+                <b>Loan Account Number:</b> <?=$loan->loanAccountNumber ?> <br>
+                <b>Loan Ref:</b> <?=$loan->loanRef ?> <br>
+                <b>Phone Number:</b> <?=$loan->phoneNumber ?> <br>
+                <b>Email:</b> <?=$loan->email ?> <br>
+                <b>Loan Amount:</b> <?= number_format($loan->loanAmount, 2)?> <br>
+                <b>Repayment Instrument Type:</b> <?=$loan->repaymentInstrumentType ?> <br>
+                <b>Repayment Instrument status:</b> <?=$loan->repaymentInstrumentStatus ?> <br>
+                <b>Token:</b> <?=$loan->token ?> <br>
+                <b>Token Expiry:</b> <?=$loan->tokenExpiry ?> <br>
+                <b>Get Loan schedule:</b> <?=$loan->getLoanSchedule ?> <br>
+                <b>Created at:</b> <?=date('d M Y h:i:s', strtotime($loan->createdAt)); ?> <br>
+                <?php  if($loan->repaymentInstrumentStatus == 'Pending') {?>
+                    <b>Repayment base:</b> <?php echo "http://172.105.152.82/public/index.php/getToken?id="+$loan->loanRef  ?> <br>
+                <?php # } ?>
+                <b>Cba Data:</b> <code><?=$loan->cbaData ?></code> <br>
             </div>
         </div>
 
-        <!-- Progress Small -->
-        <div class="card mb-4">
+    </div>
+
+    <div class="col-lg-6">
+
+        <!-- Roitation Utilities -->
+        <div class="card">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Progress Small Utility</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Repayment Info</h6>
             </div>
-            <div class="card-body">
-                <div class="mb-1 small">Normal Progress Bar</div>
-                <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 75%"
-                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="card-body text-center">
+                <div class="bg-primary text-white p-3 rotate-15 d-inline-block my-4">.rotate-15
                 </div>
-                <div class="mb-1 small">Small Progress Bar</div>
-                <div class="progress progress-sm mb-2">
-                    <div class="progress-bar" role="progressbar" style="width: 75%"
-                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <hr>
+                <div class="bg-primary text-white p-3 rotate-n-15 d-inline-block my-4">.rotate-n-15
                 </div>
-                Use the <code>.progress-sm</code> class along with <code>.progress</code>
             </div>
         </div>
+
     </div>
+
 </div>
 
 </div>
