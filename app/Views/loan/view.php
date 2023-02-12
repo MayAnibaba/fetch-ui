@@ -20,7 +20,7 @@
                 <b>Loan Ref:</b> <?=$loan->loanRef ?> <br>
                 <b>Phone Number:</b> <?=$loan->phoneNumber ?> <br>
                 <b>Email:</b> <?=$loan->email ?> <br>
-                <b>Loan Amount:</b> <?= number_format($loan->loanAmount, 2)?> <br>
+                <b>Loan Amount:</b> &#x20A6; <?= number_format($loan->loanAmount, 2)?> <br>
                 <b>Repayment Instrument Type:</b> <?=$loan->repaymentInstrumentType ?> <br>
                 <b>Repayment Instrument status:</b> <?=$loan->repaymentInstrumentStatus ?> <br>
                 <b>Token:</b> <?=$loan->token ?> <br>
@@ -28,7 +28,7 @@
                 <b>Get Loan schedule:</b> <?=$loan->getLoanSchedule ?> <br>
                 <b>Created at:</b> <?=date('d M Y h:i:s', strtotime($loan->createdAt)); ?> <br>
                 <?php  if($loan->repaymentInstrumentStatus == 'pending') {?>
-                    <b>Repayment base:</b> <?php echo "http://172.105.152.82/public/index.php/getToken?id=" . $loan->loanRef  ?> <br>
+                    <b>Repayment base:</b> <a href='<?php echo "http://172.105.152.82/public/index.php/getToken?id=" . $loan->loanRef  ?>' target='_blank'><?php echo "http://172.105.152.82/public/index.php/getToken?id=" . $loan->loanRef  ?> </a><br>
                 <?php  } ?>
                 <b>Cba Data:</b> <code><?=$loan->cbaData ?></code> <br>
             </div>
@@ -44,11 +44,61 @@
                 <h6 class="m-0 font-weight-bold text-primary">Repayment Info</h6>
             </div>
             <div class="card-body text-center">
-                <div class="bg-primary text-white p-3 rotate-15 d-inline-block my-4">.rotate-15
-                </div>
-                <hr>
-                <div class="bg-primary text-white p-3 rotate-n-15 d-inline-block my-4">.rotate-n-15
-                </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Loan Ac. Number</th>
+                            <!-- <th>Loan Ref</th> -->
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Loan Amount</th>
+                            <th>Repay. Inst. Status</th>
+                            <th>Created</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <!-- <?php# if (count($loan) > 10) {?>
+                        <tfoot>
+                            <tr>
+                                <th>Loan Ac. Number</th>
+                                 <th>Loan Ref</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Loan Amount</th>
+                                <th>Repay. Inst. Status</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    <?php #} ?>
+                     -->
+           
+                    <tbody>
+
+                    <?php
+                    // for ($i = 0; count($loan) > $i; $i++) {
+                        $loandate = strtotime($loan->createdAt);
+                    //     ?>
+                        <tr>
+                            <td><?= $loan->loanAccountNumber?></td>
+                            <!-- <td><?# $loans[$i]->loanRef?></td> -->
+                            <td><?= $loan->phoneNumber?></td>
+                            <td><?= $loan->email?></td>
+                            <td><?= number_format($loan->loanAmount, 2)?></td>
+                            <td><?= $loan->repaymentInstrumentStatus?></td>
+                            <td><?= date('d M Y h:i:s', $loandate);?></td>
+                            <td><a href="<?= base_url(); ?>/view_loan?id=<?= $loan->loanRef?>" title="edit" class="btn btn-info btn-circle btn-sm">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    
+                                </td>
+                        </tr>
+                    <?php # } ?>
+                       
+                    </tbody>
+                </table>
+            </div>
             </div>
         </div>
 
