@@ -94,4 +94,14 @@ class Loan extends BaseController
         $data['user_email'] = session()->get('email');
         $this->template('loan/view', $data); 
     }
+
+    public function create(){
+        $data['user_email'] = session()->get('email');
+        $this->template('loan/create', $data); 
+    }
+
+    public function do_create(){
+        $data['user_email'] = session()->get('email');
+        $this->template('loan/create', $data); 
+    }
 }
