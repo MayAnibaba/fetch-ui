@@ -27,6 +27,7 @@
                 <b>Token Expiry:</b> <?=$loan->tokenExpiry ?> <br>
                 <b>Get Loan schedule:</b> <?=$loan->getLoanSchedule ?> <br>
                 <b>Created at:</b> <?=date('d M Y h:i:s', strtotime($loan->createdAt)); ?> <br>
+                <b>Updated at:</b> <?=date('d M Y h:i:s', strtotime($loan->updatedAt)); ?> <br>
                 <?php  if($loan->repaymentInstrumentStatus == 'pending') {?>
                     <b>Repayment base:</b> <a href='<?php echo "http://172.105.152.82/public/index.php/getToken?id=" . $loan->loanRef  ?>' target='_blank'><?php echo "http://172.105.152.82/public/index.php/getToken?id=" . $loan->loanRef  ?> </a><br>
                 <?php  } ?>

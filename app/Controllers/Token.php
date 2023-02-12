@@ -81,7 +81,7 @@ class Token extends BaseController
             
             $paystackresponse = curl_exec($curl);
             $paystackerr = curl_error($curl);
-            print_r($paystackresponse);
+            //print_r($paystackresponse);
         
             curl_close($curl);
             
@@ -93,7 +93,9 @@ class Token extends BaseController
 
 
                 $paystackResponseObject = json_decode($paystackresponse);
-                print_r($paystackResponseObject);
+                //print_r($paystackresponse);
+
+                $cardExpiry  = $paystackResponseObject->data->authorization->exp_year . '-' . $paystackResponseObject->data->authorization->exp_month . '-28';
 
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://fetch-api-production.up.railway.app/tokens/create',
@@ -102,7 +104,7 @@ class Token extends BaseController
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS =>'{
-                        "loanRef":"'.$loanRef.'","data":"'.$paystackresponse.'"}',
+                        "token":"'.$paystackResponseObject->data->authorization->authorization_code.'","email":"'.$paystackResponseObject->data->customer->email.'","tokenExpiry":"'.$cardExpiry.'","data":"'. htmlspecialchars($paystackresponse).'"}',
                     CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
                 ));
                 
@@ -110,11 +112,16 @@ class Token extends BaseController
                 curl_close($curl);
 
                 $backendResponseObject = json_decode($backendresponse);
-                print_r($backendResponseObject);
+                //print_r($backendResponseObject);
 
-
-                $data['success'] = true;
-                $data['response'] = $paystackResponseObject;
+                if($backendResponseObject->code == '00'){
+                    $data['success'] = true;
+                    $data['response'] = $paystackResponseObject;
+                } else {
+                    $data['success'] = false;
+                    $data['response'] = $paystackResponseObject;
+                }
+                
             }
 
             return view('token/callback', $data);
@@ -123,8 +130,6 @@ class Token extends BaseController
             return view('token/callback', $data);
         }
 
-
-        
     }
 
 }

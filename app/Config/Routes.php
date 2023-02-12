@@ -43,7 +43,6 @@ $routes->get('/transactions', 'Transaction::index',['filter' => 'authGuard']);
 $routes->get('/create_trans', 'Transaction::create',['filter' => 'authGuard']);
 $routes->get('/getToken', 'Token::create');
 $routes->match(['get','post'],'/callback', 'Token::call_back');
-$routes->match(['get','post'],'/create_loan', 'Token::create');
 
 
 /*
