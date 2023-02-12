@@ -48,53 +48,39 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Loan Ac. Number</th>
-                            <!-- <th>Loan Ref</th> -->
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                            <th>Loan Amount</th>
-                            <th>Repay. Inst. Status</th>
-                            <th>Created</th>
+                            <th>Due date</th>
+                            <th>Due Amount</th>
+                            <th>Collection status</th>
+                            <th>Collected Amount</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <!-- <?php# if (count($loan) > 10) {?>
+                    <?php if (count($loanSchedule) > 10) {?>
                         <tfoot>
                             <tr>
-                                <th>Loan Ac. Number</th>
-                                 <th>Loan Ref</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Loan Amount</th>
-                                <th>Repay. Inst. Status</th>
-                                <th>Created</th>
+                                <th>Due date</th>
+                                <th>Due Amount</th>
+                                <th>Collection status</th>
+                                <th>Collected Amount</th>
                                 <th></th>
                             </tr>
                         </tfoot>
-                    <?php #} ?>
-                     -->
+                    <?php } ?>
+                     
            
                     <tbody>
 
                     <?php
-                    // for ($i = 0; count($loan) > $i; $i++) {
-                        $loandate = strtotime($loan->createdAt);
-                    //     ?>
+                     for ($i = 0; count($loanSchedule) > $i; $i++) {
+                        ?>
                         <tr>
-                            <td><?= $loan->loanAccountNumber?></td>
-                            <!-- <td><?# $loans[$i]->loanRef?></td> -->
-                            <td><?= $loan->phoneNumber?></td>
-                            <td><?= $loan->email?></td>
-                            <td><?= number_format($loan->loanAmount, 2)?></td>
-                            <td><?= $loan->repaymentInstrumentStatus?></td>
-                            <td><?= date('d M Y h:i:s', $loandate);?></td>
-                            <td><a href="<?= base_url(); ?>/view_loan?id=<?= $loan->loanRef?>" title="edit" class="btn btn-info btn-circle btn-sm">
-                                        <i class="fas fa-info-circle"></i>
-                                    </a>
-                                    
-                                </td>
+                            <td><?= $loanSchedule[$i]->dueDate?></td>
+                            <td><?= $loanSchedule[$i]->dueAmount?></td>
+                            <td><?= $loanSchedule[$i]->collectionStatus?></td>
+                            <td><?= $loanSchedule[$i]->collectedAmount?></td>
+                            <td></td>
                         </tr>
-                    <?php # } ?>
+                    <?php  } ?>
                        
                     </tbody>
                 </table>
