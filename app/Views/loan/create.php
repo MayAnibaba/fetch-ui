@@ -1,76 +1,45 @@
 
 
-<!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Loans</h6>
-            
-        </div>
-        
-        <div class="card-body">
+<!-- Page Heading -->
+<h1 class="h3 mb-1 text-gray-800">Loan Details</h1>
 
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Loan Ac. Number</th>
-                            <!-- <th>Loan Ref</th> -->
-                            <th>Phone Number</th>
-                            <th>Email</th>
-                            <th>Loan Amount</th>
-                            <th>Repay. Inst. Status</th>
-                            <th>Created</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <?php if (count($loans) > 10) {?>
-                        <tfoot>
-                            <tr>
-                                <th>Loan Ac. Number</th>
-                                <!-- <th>Loan Ref</th> -->
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>Loan Amount</th>
-                                <th>Repay. Inst. Status</th>
-                                <th>Created</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-                    <?php } ?>
-                    
-           
-                    <tbody>
+<!-- Content Row -->
+<div class="row">
 
-                    <?php
-                    for ($i = 0; count($loans) > $i; $i++) {
-                        $loandate = strtotime($loans[$i]->createdAt);
-                        ?>
-                        <tr>
-                            <td><?= $loans[$i]->loanAccountNumber?></td>
-                            <!-- <td><?# $loans[$i]->loanRef?></td> -->
-                            <td><?= $loans[$i]->phoneNumber?></td>
-                            <td><?= $loans[$i]->email?></td>
-                            <td><?= number_format($loans[$i]->loanAmount, 2)?></td>
-                            <td><?= $loans[$i]->repaymentInstrumentStatus?></td>
-                            <td><?= date('d M Y h:i:s', $loandate);?></td>
-                            <td><a href="<?php echo base_url(); ?>/view_loan" title="edit" class="btn btn-info btn-circle btn-sm">
-                                        <i class="fas fa-info-circle"></i>
-                                    </a>
-                                    
-                                </td>
-                        </tr>
-                    <?php  } ?>
-                       
-                    </tbody>
-                </table>
+    <div class="col-lg-6">
+
+        <!-- Overflow Hidden -->
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Add new loan</h6>
+            </div>
+            <div class="card-body">
+                <?php if(session()->getFlashdata('msg')):?>
+                        <div class="alert alert-warning">
+                            <?= session()->getFlashdata('msg') ?>
+                        </div>
+                <?php endif;?>
+                <form class="user" action="<?php echo base_url(); ?>/do_create_loan" method="POST">
+                    <label>Customer email</label>
+                    <input type="text" class="form-control" type="email" required><br/>
+                    <label>Customer phone number</label>
+                    <input type="text" class="form-control" type="number" required><br/>
+                    <label>Bankone Loan account number</label>
+                    <input type="text" class="form-control" type="number" required><br/><br/>
+                    <input type="submit" class="btn btn-primary"><br/>
+                </form>
             </div>
         </div>
+
     </div>
 
 </div>
+
+</div>
+
+
 <!-- /.container-fluid -->
 
 </div>
