@@ -38,7 +38,7 @@ $routes->get('/users', 'User::index',['filter' => 'authGuard']);
 $routes->get('/loans', 'Loan::index',['filter' => 'authGuard']);
 $routes->get('/view_loan', 'Loan::view',['filter' => 'authGuard']);
 $routes->get('/create_loan', 'Loan::create',['filter' => 'authGuard']);
-$routes->get('/do_create_loan', 'Loan::do_create',['filter' => 'authGuard']);
+$routes->post('/do_create_loan', 'Loan::do_create',['filter' => 'authGuard']);
 $routes->get('/transactions', 'Transaction::index',['filter' => 'authGuard']);
 $routes->get('/create_trans', 'Transaction::create',['filter' => 'authGuard']);
 $routes->get('/getToken', 'Token::create');

@@ -3,7 +3,6 @@
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-1 text-gray-800">Loan Details</h1>
 
 <!-- Content Row -->
 <div class="row">
@@ -21,13 +20,13 @@
                             <?= session()->getFlashdata('msg') ?>
                         </div>
                 <?php endif;?>
-                <form class="user" action="<?php echo base_url(); ?>/do_create_loan" method="POST">
+                <form id="loan" action="<?php echo base_url(); ?>/do_create_loan" method="POST">
                     <label>Customer email</label>
-                    <input type="text" class="form-control" type="email" required><br/>
+                    <input type="text" name="email" id="email" class="form-control" type="email" required><br/>
                     <label>Customer phone number</label>
-                    <input type="text" class="form-control" type="number" required><br/>
+                    <input type="text" name="phone" id="phone" class="form-control" type="number" required><br/>
                     <label>Bankone Loan account number</label>
-                    <input type="text" class="form-control" type="number" required><br/><br/>
+                    <input type="text" name="loanAccountNumber" id="loanAccountNumber" class="form-control" type="number" required><br/><br/>
                     <input type="submit" class="btn btn-primary"><br/>
                 </form>
             </div>

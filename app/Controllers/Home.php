@@ -11,7 +11,7 @@ class Home extends BaseController
 
     public function login(){
         $session = session();
-        helper(['curl']);
+        //helper(['curl']);
         //$userModel = new UserModel();
         $email = $_POST['email'];
         $password = $_POST['password'];
