@@ -6,7 +6,7 @@ class Token extends BaseController
 {
     public function create(){
 
-        print_r($_GET);
+        //print_r($_GET);
         if(isset($_GET['id'])){
 
             $loanRef = htmlspecialchars($_GET['id']);
@@ -85,7 +85,7 @@ class Token extends BaseController
         
             curl_close($curl);
             
-            if ($err) {
+            if ($paystackerr) {
                 $data['success'] = false;
                 $data['message'] = "cURL Error #:" . $paystackerr;
 
