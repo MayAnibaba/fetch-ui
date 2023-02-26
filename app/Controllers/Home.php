@@ -78,12 +78,8 @@ class Home extends BaseController
         curl_close($curl);
 
         $responseObject = json_decode($response);
-
-		if($responseObject->code =="00"){
-            $data['dashboard'] = $responseObject->data;
-        } else {
-            $session->setFlashdata('msg', $responseObject->message);
-        }
+        $data['dashboard'] = $responseObject;
+    
 
         $data['user_email'] = session()->get('email');
         $this->template('dashboard', $data); 
