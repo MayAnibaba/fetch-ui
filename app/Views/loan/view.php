@@ -79,7 +79,7 @@
                             <td><?= date('d M Y h:i:s', $transdate);?></td>
                             <td>&#x20A6; <?= number_format($loanSchedules[$i]->dueAmount,2)?></td>
                             <td><?= $loanSchedules[$i]->collectionStatus?></td>
-                            <td><?= $loanSchedules[$i]->collectedAmount?></td>
+                            <td>&#x20A6;  <?= number_format($loanSchedules[$i]->collectedAmount, 2)?></td>
                             <td></td>
                         </tr>
                     <?php  } ?>

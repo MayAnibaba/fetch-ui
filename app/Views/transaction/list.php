@@ -52,6 +52,11 @@
                             <td><?= $transactions[$i]->message?></td>
                             <td>&#x20A6; <?= number_format($transactions[$i]->amount / 100, 2)?></td>
                             <td><?= date('d M Y h:i:s', $transdate);?></td>
+                            <td><a href="<?= base_url(); ?>/view_transaction?id=<?= $transactions[$i]->transRef?>" title="view" class="btn btn-info btn-circle btn-sm">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    
+                                </td>
                             <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>
