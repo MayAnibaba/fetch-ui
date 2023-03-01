@@ -40,7 +40,7 @@ $routes->get('/view_loan', 'Loan::view',['filter' => 'authGuard']);
 $routes->get('/create_loan', 'Loan::create',['filter' => 'authGuard']);
 $routes->post('/do_create_loan', 'Loan::do_create',['filter' => 'authGuard']);
 $routes->get('/transactions', 'Transaction::index',['filter' => 'authGuard']);
-$routes->post('/view_transaction', 'Transaction::view',['filter' => 'authGuard']);
+$routes->get('/view_transaction', 'Transaction::view',['filter' => 'authGuard']);
 $routes->get('/create_trans', 'Transaction::create',['filter' => 'authGuard']);
 $routes->get('/getToken', 'Token::create');
 $routes->match(['get','post'],'/callback', 'Token::call_back');

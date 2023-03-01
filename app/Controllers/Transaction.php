@@ -36,6 +36,7 @@ class Transaction extends BaseController
     }
 
     public function view(){
+
         if(isset($_GET['id'])){
             $transRef = htmlspecialchars($_GET['id']);
             $curl = curl_init();
@@ -56,11 +57,14 @@ class Transaction extends BaseController
             curl_close($curl); 
 
             $responseObject = json_decode($response);
-            $data['transaction'] = $response2Object->data;
+            $data['transaction'] = $responseObject->data;
 
         } else {
             $data['transaction'] = '';
         }
+        
+        $data['user_email'] = session()->get('email');
+        $this->template('transaction/view', $data); 
     }
 
 }
