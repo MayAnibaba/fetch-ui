@@ -50,7 +50,7 @@
                             <td><?= $transactions[$i]->scheduleRef?></td>
                             <td><?= $transactions[$i]->status?></td>
                             <td><?= $transactions[$i]->message?></td>
-                            <td><?= $transactions[$i]->amount?></td>
+                            <td>&#x20A6; <?= number_format($transactions[$i]->amount / 100, 2)?></td>
                             <td><?= date('d M Y h:i:s', $transdate);?></td>
                             <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>

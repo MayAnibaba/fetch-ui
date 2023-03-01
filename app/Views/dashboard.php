@@ -31,7 +31,7 @@
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">&#x20A6; <?php 
                                             if($dashboard->dueLoan!="")
                                             { 
-                                                echo number_format($dashboard->dueLoan);
+                                                echo number_format($dashboard->dueLoan,2);
                                             } else { 
                                                 echo '0.00';
                                             }?></div>
@@ -56,7 +56,7 @@
                                                 <?php 
                                                 if($dashboard->collectedRepayments!="")
                                                 {
-                                                    echo number_format($dashboard->collectedRepayments);
+                                                    echo number_format($dashboard->collectedRepayments,2);
                                                 } else { 
                                                     echo '0.00';
                                                 }?></div>
