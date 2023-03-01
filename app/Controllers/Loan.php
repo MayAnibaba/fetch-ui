@@ -70,7 +70,7 @@ class Loan extends BaseController
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS =>'{
-                        "loanRef":"'.$loanRef.'"}',
+                        "loanRef":"'.$responseObject->data->loanAccountNumber.'"}',
                     CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
                     )
                 );

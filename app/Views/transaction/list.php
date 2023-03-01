@@ -17,7 +17,7 @@
                             <th>Trans Ref</th>
                             <th>Schedule Ref</th>
                             <th>Status</th>
-                            <th>Status</th>
+                            <th>Message</th>
                             <th>Amount</th>
                             <th>Created</th>
                             <th>Actions</th>
@@ -29,7 +29,7 @@
                             <th>Trans Ref</th>
                             <th>Schedule Ref</th>
                             <th>Status</th>
-                            <th>Status</th>
+                            <th>Message</th>
                             <th>Amount</th>
                             <th>Created</th>
                             <th>Actions</th>
@@ -50,13 +50,10 @@
                             <td><?= $transactions[$i]->scheduleRef?></td>
                             <td><?= $transactions[$i]->status?></td>
                             <td><?= $transactions[$i]->message?></td>
-                            <td><?= $transactions[$i]->code?></td>
+                            <td><?= $transactions[$i]->amount?></td>
                             <td><?= date('d M Y h:i:s', $transdate);?></td>
                             <td><a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
-                                    </a>
-                                    <a href="" title="delete" class="btn btn-danger btn-circle btn-sm">
-                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                         </tr>
