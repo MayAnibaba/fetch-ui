@@ -45,9 +45,9 @@
                                 <tr>
                                     <td><?= $users[$i]->email?></td>
                                     <td><?php if($users[$i]->isActive == '1') { echo '&#128994;';} else {echo '&#x1F534;';}?></td>
-                                    <td><?php if($users[$i]->lastLogin != ''){ echo date('d M Y h:i:s', $dateLogin);}?></td>
-                                    <td><?php if($users[$i]->createdAt != ''){ echo date('d M Y h:i:s', $dateCreated);}?></td>
-                                    <td><?php if($users[$i]->updatedAt != ''){ echo date('d M Y h:i:s', $dateUpdated);}?></td>
+                                    <td><?php if($users[$i]->lastLogin != ''){ echo date('d M Y H:i:s', $dateLogin);}?></td>
+                                    <td><?php if($users[$i]->createdAt != ''){ echo date('d M Y H:i:s', $dateCreated);}?></td>
+                                    <td><?php if($users[$i]->updatedAt != ''){ echo date('d M Y H:i:s', $dateUpdated);}?></td>
                                     <td><!-- <a href="#" title="edit" class="btn btn-info btn-circle btn-sm">
                                                 <i class="fas fa-info-circle"></i>
                                             </a>

@@ -90,9 +90,10 @@
                     <!-- Content Row -->
 
                     <div class="row">
-
-                    <?php print_r($dashboard->lastLogTime)?>
-
+                        <div class="card-body">
+                            <b>Repayment Service last run: </b> <?php echo date('d M Y H:i:s', strtotime($dashboard->lastLogTime[0]->lastRepaymentTime))?><br/>
+                            <b>Total due repayments found: </b> <?php echo $dashboard->lastLogTime[0]->repaymentsFound?>
+                        </div>
                         <!-- Area Chart -->
                         <!-- <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">

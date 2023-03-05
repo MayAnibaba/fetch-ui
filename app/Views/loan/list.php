@@ -55,7 +55,7 @@
                             <td><?= $loans[$i]->email?></td>
                             <td>&#x20A6; <?= number_format($loans[$i]->loanAmount, 2)?></td>
                             <td><?= $loans[$i]->repaymentInstrumentStatus?></td>
-                            <td><?= date('d M Y h:i:s', $loandate);?></td>
+                            <td><?= date('d M Y H:i:s', $loandate);?></td>
                             <td><a href="<?= base_url(); ?>/view_loan?id=<?= $loans[$i]->loanRef?>" title="view" class="btn btn-info btn-circle btn-sm">
                                         <i class="fas fa-info-circle"></i>
                                     </a>

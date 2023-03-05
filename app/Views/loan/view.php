@@ -76,7 +76,7 @@
                         $transdate = strtotime($loanSchedules[$i]->dueDate);
                         ?>
                         <tr>
-                            <td><?= date('d M Y h:i:s', $transdate);?></td>
+                            <td><?= date('d M Y H:i:s', $transdate);?></td>
                             <td>&#x20A6; <?= number_format($loanSchedules[$i]->dueAmount,2)?></td>
                             <td><?= $loanSchedules[$i]->collectionStatus?></td>
                             <td>&#x20A6;  <?= number_format($loanSchedules[$i]->collectedAmount, 2)?></td>

@@ -23,7 +23,7 @@
                 <b>Code:</b> <?=$transaction->code ?> <br>
                 <b>Amount:</b> &#x20A6; <?= number_format($transaction->amount / 100, 2)?>  <br>
                 <b>Data:</b> <code><?=$transaction->data ?></code> <br>
-                <b>Created at:</b> <?=date('d M Y h:i:s', strtotime($transaction->createdAt)); ?> <br>
+                <b>Created at:</b> <?=date('d M Y H:i:s', strtotime($transaction->createdAt)); ?> <br>
             </div>
         </div>
 
