@@ -35,7 +35,8 @@ class Token extends BaseController
 
             if($responseObject->code =="00"){
                 //paystack transaction initialize
-                $secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
+                //$secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
+                $secretKey = 'sk_live_caba5bab937b62f7d7f367b0b5ac8951674e9257';
                 $Transaction = new \Matscode\Paystack\Transaction( $secretKey );
                 $response = $Transaction
                             ->setCallbackUrl(base_url().'/callback') // to override/set callback_url, it can also be set on your dashboard 
