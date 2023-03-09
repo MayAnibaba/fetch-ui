@@ -44,6 +44,7 @@ $routes->get('/view_transaction', 'Transaction::view',['filter' => 'authGuard'])
 $routes->get('/create_trans', 'Transaction::create',['filter' => 'authGuard']);
 $routes->get('/getToken', 'Token::create');
 $routes->match(['get','post'],'/callback', 'Token::call_back');
+$routes->match(['get','post'],'/get_proxy', 'Home::getBankOneProxy');
 
 
 
