@@ -32,11 +32,11 @@ class BankOne extends BaseController
         if(curl_errno($curl)){
             $data['response'] = curl_error($curl);
         } else {
-            print_r($response);
             $data['response'] = $response;
         }
 
         curl_close($curl);
+        $this->response->setHeader('Content-Type', 'application/json');
         return view('proxy/view', $data);
 
     }
