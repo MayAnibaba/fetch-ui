@@ -64,18 +64,21 @@ class Home extends BaseController
     public function dashboard(){
         $session = session();
 
-        $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://fetch-api-production.up.railway.app/dashboard',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 60,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-        ));
+        $response = perform_http_request('POST', 'https://fetch-api-production.up.railway.app/dashboard');
+
+        // $curl = curl_init();
+
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => 'https://fetch-api-production.up.railway.app/dashboard',
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_TIMEOUT => 60,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => 'POST',
+        // ));
         
-        $response = curl_exec($curl);
-        curl_close($curl);
+        // $response = curl_exec($curl);
+        // curl_close($curl);
 
         $responseObject = json_decode($response);
         $data['dashboard'] = $responseObject;

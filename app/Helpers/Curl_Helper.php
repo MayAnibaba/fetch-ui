@@ -16,10 +16,10 @@ function perform_http_request($method, $url, $data = false) {
             curl_setopt($curl, CURLOPT_PUT, 1);
 			
             break;
-        // default:
-        //     if ($data) {
-        //         $url = sprintf("%s?%s", $url, http_build_query($data));
-		// 	}
+        default:
+            if ($data) {
+                $url = sprintf("%s?%s", $url, http_build_query($data));
+			}
     }
 
     curl_setopt($curl, CURLOPT_URL, $url);

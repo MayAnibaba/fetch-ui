@@ -1,5 +1,5 @@
 <?php
-
+  
 namespace App\Controllers;
 
 class BankOne extends BaseController
