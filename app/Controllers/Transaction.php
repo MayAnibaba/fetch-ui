@@ -5,10 +5,10 @@ namespace App\Controllers;
 class Transaction extends BaseController
 {
     public function index(){
-
+        $config = new \Config\AppConfig();
 
         $client = \Config\Services::curlrequest();
-        $response = $client->get('https://fetch-api-production.up.railway.app/transactions');
+        $response = $client->get($config->backendUrl.'transactions');
 
         $responseObject = json_decode($response->getBody());
 
@@ -23,6 +23,7 @@ class Transaction extends BaseController
     }
 
     public function view(){
+        $config = new \Config\AppConfig();
 
         if(isset($_GET['id'])){
 
@@ -31,7 +32,7 @@ class Transaction extends BaseController
             );
 
             $client = \Config\Services::curlrequest();
-            $response = $client->post('https://fetch-api-production.up.railway.app/transactions/byTransRef',['json'=>$body]);
+            $response = $client->post($config->backendUrl.'transactions/byTransRef',['json'=>$body]);
 
             $responseObject = json_decode($response->getBody());
             $data['transaction'] = $responseObject->data;

@@ -11,6 +11,7 @@ class Home extends BaseController
 
     public function login(){
         $session = session();
+        $config = new \Config\AppConfig();
 
         $body = array(
             'email' => htmlspecialchars($_POST['email']),
@@ -18,7 +19,7 @@ class Home extends BaseController
         );
 
         $client = \Config\Services::curlrequest();
-        $response = $client->post('https://fetch-api-production.up.railway.app/users/login',['json'=>$body]);
+        $response = $client->post($config->backendUrl.'users/login' ,['json'=>$body]);
 
         $responseObject = json_decode($response->getBody());
         //print_r($responseObject);
@@ -47,9 +48,10 @@ class Home extends BaseController
 
     public function dashboard(){
         $session = session();
+        $config = new \Config\AppConfig();
 
         $client = \Config\Services::curlrequest();
-        $response = $client->post('https://fetch-api-production.up.railway.app/dashboard');
+        $response = $client->post($config->backendUrl.'dashboard');
 
         $responseObject = json_decode($response->getBody());
 

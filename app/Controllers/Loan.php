@@ -5,9 +5,10 @@ namespace App\Controllers;
 class Loan extends BaseController
 {
     public function index(){
+        $config = new \Config\AppConfig();
 
         $client = \Config\Services::curlrequest();
-        $response = $client->get('https://fetch-api-production.up.railway.app/loans');
+        $response = $client->get($config->backendUrl.'loans');
 
         $responseObject = json_decode($response->getBody());
 
@@ -88,8 +89,7 @@ class Loan extends BaseController
 
     public function do_create(){
         $session = session();
-
-
+        $config = new \Config\AppConfig();
 
         $body = array(
             'email' => htmlspecialchars($_POST['email']),
@@ -98,7 +98,7 @@ class Loan extends BaseController
         );
 
         $client = \Config\Services::curlrequest();
-        $response = $client->post('https://fetch-api-production.up.railway.app/users/loans/add',['json'=>$body]);
+        $response = $client->post($config->backendUrl.'users/loans/add',['json'=>$body]);
 
         $responseObject = json_decode($response->getBody());
         //print_r($responseObject);

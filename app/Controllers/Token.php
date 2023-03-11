@@ -5,8 +5,8 @@ namespace App\Controllers;
 class Token extends BaseController
 {
     public function create(){
+        $config = new \Config\AppConfig();
 
-        //print_r($_GET);
         if(isset($_GET['id'])){
 
             $body = array(
@@ -14,17 +14,15 @@ class Token extends BaseController
             );
     
             $client = \Config\Services::curlrequest();
-            $response = $client->post('https://fetch-api-production.up.railway.app/users/loans/byLoanRef',['json'=>$body]);
+            $response = $client->post($config->backendUrl.'users/loans/byLoanRef',['json'=>$body]);
     
             $responseObject = json_decode($response->getBody());
 
             if($responseObject->code =="00"){
                 //paystack transaction initialize
-                //$secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
-                $secretKey = 'sk_live_caba5bab937b62f7d7f367b0b5ac8951674e9257';
-                $Transaction = new \Matscode\Paystack\Transaction( $secretKey );
+                $Transaction = new \Matscode\Paystack\Transaction( $config->paystackPrivateKey );
                 $response = $Transaction
-                            ->setCallbackUrl(base_url().'/callback') // to override/set callback_url, it can also be set on your dashboard 
+                            ->setCallbackUrl(base_url().'/callback') 
                             ->setEmail( $responseObject->data->email, )
                             ->setAmount( 50 ) // amount is treated in Naira while using this method
                             ->initialize();
@@ -44,11 +42,9 @@ class Token extends BaseController
     }
 
     public function call_back(){
-
+        $config = new \Config\AppConfig();
         sleep(5); // wait for data to come in
 
-        $secretKey = 'sk_live_caba5bab937b62f7d7f367b0b5ac8951674e9257';
-       //$secretKey = 'sk_test_45213c0b37221dc3a914a01a3ebace00f47f82c2';
         if($_GET['reference']){
 
             $curl = curl_init();
@@ -63,7 +59,7 @@ class Token extends BaseController
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer $secretKey",
+                "Authorization: Bearer $config->paystackPrivateKey",
                 "Cache-Control: no-cache",
             ),
             ));
@@ -93,7 +89,7 @@ class Token extends BaseController
                 );
 
                 $client = \Config\Services::curlrequest();
-                $backEndResponse = $client->post('https://fetch-api-production.up.railway.app/tokens/create',['json'=>$body]);
+                $backEndResponse = $client->post($config->backendUrl.'tokens/create',['json'=>$body]);
                 
 
                 $backendResponseObject = json_decode($backEndResponse->getBody());

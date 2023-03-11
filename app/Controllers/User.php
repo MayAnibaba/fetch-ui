@@ -5,9 +5,10 @@ namespace App\Controllers;
 class User extends BaseController
 {
     public function index(){
+        $config = new \Config\AppConfig();
 
         $client = \Config\Services::curlrequest();
-        $response = $client->get('https://fetch-api-production.up.railway.app/users');
+        $response = $client->get($config->backendUrl.'users');
 
         $responseObject = json_decode($response->getBody());
 
