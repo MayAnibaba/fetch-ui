@@ -12,11 +12,6 @@ class Home extends BaseController
     public function login(){
         $session = session();
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        // $body = '{"email":"'.htmlspecialchars($_POST['email']).'",
-        //     "password":"'.$password.'"}'
-
         $body = array(
             'email' => htmlspecialchars($_POST['email']),
             'password' => htmlspecialchars($_POST['password'])
@@ -26,31 +21,7 @@ class Home extends BaseController
         $response = $client->post('https://fetch-api-production.up.railway.app/users/login',['json'=>$body]);
 
         $responseObject = json_decode($response->getBody());
-
-
-        // $curl = curl_init();
-
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => 'https://fetch-api-production.up.railway.app/users/login',
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_TIMEOUT => 60,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => 'POST',
-        //     CURLOPT_POSTFIELDS =>'{
-        //         "email":"'.$email.'",
-        //         "password":"'.$password.'"}',
-        //     CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
-        //     )
-        // );
-        
-        // $response = curl_exec($curl);
-        // curl_close($curl);
-		
-        // //print_r($response);
-
-        // $responseObject = json_decode($response);
-        print_r($responseObject);
-
+        //print_r($responseObject);
 
 		if($responseObject->code =="00"){
 

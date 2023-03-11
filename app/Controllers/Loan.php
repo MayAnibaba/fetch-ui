@@ -6,24 +6,10 @@ class Loan extends BaseController
 {
     public function index(){
 
-        $curl = curl_init();
+        $client = \Config\Services::curlrequest();
+        $response = $client->get('https://fetch-api-production.up.railway.app/loans');
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://fetch-api-production.up.railway.app/loans',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 60,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-        ));
-        
-        $response = curl_exec($curl);
-        curl_close($curl);
-		
-        //print_r($response);
-
-        $responseObject = json_decode($response);
-        //print_r($responseObject);
-
+        $responseObject = json_decode($response->getBody());
 
 		if($responseObject->code =="00"){
             $data['loans'] = $responseObject->data;
@@ -102,29 +88,19 @@ class Loan extends BaseController
 
     public function do_create(){
         $session = session();
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $accNumber = $_POST['loanAccountNumber'];
-        $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://fetch-api-production.up.railway.app/loans/add',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 60,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>'{
-                "email":"'.$email.'",
-                "phoneNumber":"'.$phone.'",
-                "loanAccountNumber":"'.$accNumber.'"}',
-            CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
-            )
+
+
+        $body = array(
+            'email' => htmlspecialchars($_POST['email']),
+            'phoneNumber' => htmlspecialchars($_POST['phone']),
+            'loanAccountNumber' => htmlspecialchars($_POST['loanAccountNumber'])
         );
-        
-        $response = curl_exec($curl);
-        curl_close($curl);
 
-        $responseObject = json_decode($response);
+        $client = \Config\Services::curlrequest();
+        $response = $client->post('https://fetch-api-production.up.railway.app/users/loans/add',['json'=>$body]);
+
+        $responseObject = json_decode($response->getBody());
         print_r($responseObject);
 
 
