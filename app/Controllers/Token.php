@@ -9,29 +9,14 @@ class Token extends BaseController
         //print_r($_GET);
         if(isset($_GET['id'])){
 
-            $loanRef = htmlspecialchars($_GET['id']);
-
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://fetch-api-production.up.railway.app/loans/byLoanRef',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT => 60,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS =>'{
-                    "loanRef":"'.$loanRef.'"}',
-                CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
-            ));
-            
-            $response = curl_exec($curl);
-            curl_close($curl);
-            
-            //print_r($response);
-
-            $responseObject = json_decode($response);
-            //print_r($responseObject);
-
+            $body = array(
+                'loanRef' => htmlspecialchars($_GET['id'])
+            );
+    
+            $client = \Config\Services::curlrequest();
+            $response = $client->post('https://fetch-api-production.up.railway.app/users/loans/byLoanRef',['json'=>$body]);
+    
+            $responseObject = json_decode($response->getBody());
 
             if($responseObject->code =="00"){
                 //paystack transaction initialize
@@ -94,28 +79,24 @@ class Token extends BaseController
                 $data['message'] = "cURL Error #:" . $paystackerr;
 
             } else {
-
-
                 $paystackResponseObject = json_decode($paystackresponse);
-                print_r($paystackresponse);
-
+                //print_r($paystackresponse);
                 $cardExpiry  = $paystackResponseObject->data->authorization->exp_year . '-' . $paystackResponseObject->data->authorization->exp_month . '-28';
 
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL => 'https://fetch-api-production.up.railway.app/tokens/create',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_TIMEOUT => 60,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS =>'{
-                        "token":"'.$paystackResponseObject->data->authorization->authorization_code.'","email":"'.$paystackResponseObject->data->customer->email.'","tokenExpiry":"'.$cardExpiry.'","data":"'. htmlspecialchars($paystackresponse).'"}',
-                    CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
-                ));
-                
-                $backendresponse = curl_exec($curl);
-                curl_close($curl);
 
-                $backendResponseObject = json_decode($backendresponse);
+
+                $body = array(
+                    'token' => $paystackResponseObject->data->authorization->authorization_code,
+                    'email' => $paystackResponseObject->data->customer->email,
+                    'tokenExpiry' => $cardExpiry,
+                    'data' => htmlspecialchars($paystackresponse)
+                );
+
+                $client = \Config\Services::curlrequest();
+                $backEndResponse = $client->post('https://fetch-api-production.up.railway.app/tokens/create',['json'=>$body]);
+                
+
+                $backendResponseObject = json_decode($backEndResponse->getBody());
                 //print_r($backendResponseObject);
 
                 if($backendResponseObject->code == '00'){
