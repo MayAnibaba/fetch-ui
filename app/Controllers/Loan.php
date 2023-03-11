@@ -101,7 +101,7 @@ class Loan extends BaseController
         $response = $client->post('https://fetch-api-production.up.railway.app/users/loans/add',['json'=>$body]);
 
         $responseObject = json_decode($response->getBody());
-        print_r($responseObject);
+        //print_r($responseObject);
 
 
 		if($responseObject->code =="00"){

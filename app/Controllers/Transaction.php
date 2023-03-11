@@ -6,24 +6,11 @@ class Transaction extends BaseController
 {
     public function index(){
 
-        $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://fetch-api-production.up.railway.app/transactions',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 60,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-        ));
-        
-        $response = curl_exec($curl);
-        curl_close($curl);
-		
-        //print_r($response);
+        $client = \Config\Services::curlrequest();
+        $response = $client->get('https://fetch-api-production.up.railway.app/transactions');
 
-        $responseObject = json_decode($response);
-        //print_r($responseObject);
-
+        $responseObject = json_decode($response->getBody());
 
 		if($responseObject->code =="00"){
             $data['transactions'] = $responseObject->data;
@@ -38,25 +25,15 @@ class Transaction extends BaseController
     public function view(){
 
         if(isset($_GET['id'])){
-            $transRef = htmlspecialchars($_GET['id']);
-            $curl = curl_init();
 
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://fetch-api-production.up.railway.app/transactions/byTransRef',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT => 60,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS =>'{
-                    "transRef":"'.$transRef.'"}',
-                CURLOPT_HTTPHEADER => array('Content-Type: application/json'),
-                )
+            $body = array(
+                'transRef' => htmlspecialchars($_GET['id'])
             );
-            
-            $response = curl_exec($curl);
-            curl_close($curl); 
 
-            $responseObject = json_decode($response);
+            $client = \Config\Services::curlrequest();
+            $response = $client->post('https://fetch-api-production.up.railway.app/transactions/byTransRef',['json'=>$body]);
+
+            $responseObject = json_decode($response->getBody());
             $data['transaction'] = $responseObject->data;
 
         } else {
