@@ -14,7 +14,7 @@ class Token extends BaseController
             );
     
             $client = \Config\Services::curlrequest();
-            $response = $client->post($config->backendUrl.'users/loans/byLoanRef',['json'=>$body]);
+            $response = $client->post($config->backendUrl.'loans/byLoanRef',['json'=>$body]);
     
             $responseObject = json_decode($response->getBody());
 

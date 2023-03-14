@@ -98,10 +98,10 @@ class Loan extends BaseController
         );
 
         $client = \Config\Services::curlrequest();
-        $response = $client->post($config->backendUrl.'users/loans/add',['json'=>$body]);
+        $response = $client->post($config->backendUrl.'loans/add',['json'=>$body]);
 
         $responseObject = json_decode($response->getBody());
-        //print_r($responseObject);
+        print_r($responseObject);
 
 
 		if($responseObject->code =="00"){
